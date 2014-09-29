@@ -1,5 +1,5 @@
 \documentclass[dvips,12pt]{article}
-
+\usepackage[left=0.65in,top=0.3in,right=0.65in,bottom=0.3in]{geometry} % Document margins
 % Any percent sign marks a comment to the end of the line
 
 % Every latex document starts with a documentclass declaration like this
@@ -24,8 +24,8 @@
 	% Everything after this becomes content
 	% Replace the text between curly brackets with your own
 	
-	\title{Keyword extraction by deep learning}
-	\author{Yi Cheng(andrewId), Anoop Hallur(ahallur), Xiaoqiu Huang(andrewId)}
+	\title{Keyword Extraction by Deep Learning}
+	\author{Yi Cheng(yicheng1), Anoop Hallur(ahallur), Xiaoqiu Huang(xiaoqiuh)}
 	\date{\today}
 	
 	% You can leave out "date" and it will be added automatically for today
@@ -36,46 +36,35 @@
 	% This command causes the title to be created in the document
 	
 	\section{Introduction}
-		In this project, we plan to implement keyword extraction of short and long textual data by application of deep learning. We would like it learn the highest ranked words in it by constructing a suitable models of the words in the document.
+		Recently, \emph{Deep Learning} has been successfully applied in several domains, such as \emph{Voice Recognition}, \emph{Computer Vision}, and so on. Keywords are words that best describe the topic of a passage, which are useful in Information Retrieval. So we came out of an idea about applying \emph{Deep Learning} methods to \emph{Keyword Extraction}. \\
+        In this project, we plan to implement keyword extraction of short and long textual data by application of deep learning. We would like it learn the highest ranked words in it by constructing a suitable models of the words in the document.
 
 	\section{Dataset}
 		We have identified data from stackexchange( \url{https://archive.org/download/stackexchange/stackexchange_archive.torrent}) to be a suitable data set for our project. It has labelled data from various topics such as programming, travel, philosophy etc. We have apporximately 20 GB of labelled data. This is large data set to test our algorithms on a larger scale. For our project we plan to train on a specified portion of the data and test on the remaining data. Since the data is cleanly labelled, we need not do any special processing/cleaning up of the data set other than splitting it into smaller segements for it to be suitable to work on.
+        
 	
 	% An article style is separated into sections and subsections with 
 	%   markup such as this.  Use \section*{Principles} for unnumbered sections.
 	\section{Plan and Milestone}
-	Since in this project, we try to apply \emph{Deep Learning to Keyword Extraction}, we divide the project into the following small tasks:
+	Since in this project, we try to apply \emph{Deep Learning} to \emph{Keyword Extraction}, we divide the project into the following small tasks:
 	\begin{enumerate}
 		\item Be familiar with existing techniques and related works.
 		\item Learn \emph{Deep Learning} method and how it can be used in NLP related applications.
 		\item Design our model and  experiment with the parameters and try to improve the model.
 		\item Analyze the performance on the test data set and summarize the results in the project report.
 	\end{enumerate}
-	For the midterm report, we aim to finish the first two tasks, i.e implement some of the previously proposed methods and test them on the stackexchange dataset.
+	For the midterm report, we aim to finish the first two tasks, i.e implement some of the previously proposed methods and test them on the stackexchange dataset. \\
+    Here is a list of papers need to be read before the midterm report:
+    \begin{itemize}
+        \item Bengio Y, Schwenk H, Senécal J S, et al. Neural probabilistic language models[M]//Innovations in Machine Learning. Springer Berlin Heidelberg, 2006: 137-186.
+        \item Socher R, Perelygin A, Wu J Y, et al. Recursive deep models for semantic compositionality over a sentiment treebank[C]//Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP). 2013: 1631-1642.
+        \item Socher R, Lin C C, Manning C, et al. Parsing natural scenes and natural language with recursive neural networks[C]//Proceedings of the 28th International Conference on Machine Learning (ICML-11). 2011: 129-136.
+        \item Collobert R, Weston J, Bottou L, et al. Natural language processing (almost) from scratch[J]. The Journal of Machine Learning Research, 2011, 12: 2493-2537.
+        \item Matsuo Y, Ishizuka M. Keyword extraction from a single document using word co-occurrence statistical information[J]. International Journal on Artificial Intelligence Tools, 2004, 13(01): 157-169.
+        \item Lott B. Survey of Keyword Extraction Techniques[J]. UNM Education, 2012.
+        \item Hasan K S, Ng V. Automatic Keyphrase Extraction: A Survey of the State of the Art[J].
+    \end{itemize}
 	\section{Goal}
 	We need to apply \emph{Deep Learning} to the problem and do experiments on it. If the performance is worse than that of the previous works, \textbf{at least} we need to figure the reason as to why the performance is poor and how to improve it. \\
-	As a stretch goal, we need to improve the model itself and try to do keywords generation (//i did not understand what you mean here//) and finally convert it to a model suitable for unsupervised tasks.
-	\begin{thebibliography}{99}
-		
-		\bibitem{socher2013} Richard Socher, 
-		Alex Perelygin,	
-		Jean Y. Wu,	
-		Jason Chuang,	
-		Christopher D. Manning,	
-		Andrew Y. Ng	
-		and  Christopher Potts,
-		{Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank},
-		EMNLP, (2013).
-
-		\bibitem{socher2011} Richard Socher, 
-		Cliﬀ Chiung-Yu Lin,		
-		Christopher D. Manning,	
-		and Andrew Y. Ng	
-		{Parsing Natural Scenes and Natural Language with Recursive Neural Networks},
-		NIPS, (2011).
-				
-	\end{thebibliography}
-	
-	
-	
+	As a stretch goal, we need to create the model which can automatically generate new keywords and finally those new keywords can be combined with our model to form a novel semi-supervised word extraction algorithm.
 \end{document}
