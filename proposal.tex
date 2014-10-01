@@ -36,11 +36,11 @@
 	% This command causes the title to be created in the document
 	
 	\section{Introduction}
-		Recently, \emph{Deep Learning} has been successfully applied in several domains, such as \emph{Voice Recognition}, \emph{Computer Vision}, and so on. Keywords are words that best describe the topic of a passage, which are useful in Information Retrieval. So we came out of an idea about applying \emph{Deep Learning} methods to \emph{Keyword Extraction}. \\
-        In this project, we plan to implement keyword extraction of short and long textual data by application of deep learning. We would like it learn the highest ranked words in it by constructing a suitable models of the words in the document.
+		Recently, \emph{Deep Learning} has been successfully applied in some tasks of \emph{NLP}, such as parser, machine translation, text summarization and so on. Keywords extraction is a very important subfield of \emph{NLP}, which is very useful especially in \emph{Information Retrieval}, but not much work has been done with the method of \emph{Deep Learning} for keyword extraction.\\
+        In this project, we plan to implement keyword extraction of short and long textual data by application of deep learning. We would like it learn the highest ranked words in it by constructing suitable models of the words in the document.
 
 	\section{Dataset}
-		We have identified data from stackexchange( \url{https://archive.org/download/stackexchange/stackexchange_archive.torrent}) to be a suitable data set for our project. It has labelled data from various topics such as programming, travel, philosophy etc. We have apporximately 20 GB of labelled data. This is large data set to test our algorithms on a larger scale. For our project we plan to train on a specified portion of the data and test on the remaining data. Since the data is cleanly labelled, we need not do any special processing/cleaning up of the data set other than splitting it into smaller segements for it to be suitable to work on.
+		We have identified data from stackexchange( \url{https://archive.org/download/stackexchange/stackexchange_archive.torrent}) to be a suitable data set for our project. It has labelled data from various topics such as programming, travel, philosophy etc. We have apporximately 20 GB of labelled data. This is large data set to test our algorithms on a larger scale. For our project we plan to train on a specified portion of the data and test on the remaining data. Since the data is cleanly labelled, we need not do any special processing/cleaning up of the data set other than splitting it into smaller segments for it to be suitable to work on.
         
 	
 	% An article style is separated into sections and subsections with 
@@ -49,7 +49,7 @@
 	Since in this project, we try to apply \emph{Deep Learning} to \emph{Keyword Extraction}, we divide the project into the following small tasks:
 	\begin{enumerate}
 		\item Be familiar with existing techniques and related works.
-		\item Learn \emph{Deep Learning} method and how it can be used in NLP related applications.
+		\item Learn \emph{Deep Learning} methods and how it can be used in NLP related applications.
 		\item Design our model and  experiment with the parameters and try to improve the model.
 		\item Analyze the performance on the test data set and summarize the results in the project report.
 	\end{enumerate}
@@ -65,6 +65,6 @@
         \item Hasan K S, Ng V. Automatic Keyphrase Extraction: A Survey of the State of the Art[J].
     \end{itemize}
 	\section{Goal}
-	We need to apply \emph{Deep Learning} to the problem and do experiments on it. If the performance is worse than that of the previous works, \textbf{at least} we need to figure the reason as to why the performance is poor and how to improve it. \\
-	As a stretch goal, we need to create the model which can automatically generate new keywords and finally those new keywords can be combined with our model to form a novel semi-supervised word extraction algorithm.
+	We need to apply \emph{Deep Learning} to the problem of keyword extraction and perform experiments on it. If the performance is worse than that of the previous works, \textbf{at least} we need to figure the reason as to why the performance is poor and how to improve it. \\
+	As a stretch goal, we intend to create the model which can automatically generate new keywords and finally those new keywords can be combined with our model to form a novel semi-supervised word extraction algorithm.
 \end{document}
