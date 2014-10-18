@@ -1,0 +1,14 @@
+Techniques to use to establish baseline
+
+1. Word Frequency Analysis
+    ~> TFIDF
+
+2. Frequency based Single Document Keywork extraction
+
+3. Content sensitive Single Document Keywork Extraction
+    It matches and surpasses TF-IDF
+
+Lexical Graph
+
+Bayes Classiﬁer with TF-IDF
+
