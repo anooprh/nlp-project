@@ -17,5 +17,5 @@ with open(filename, "r") as file:
         tags = tags_match.group(1)
         tags = tags.replace('&gt;&lt;', ',').replace('&lt;','').replace('&gt;','')
         tags = tags.split(',')
-        print "\nTitle = %s \nQuestion = %s\n Tags=%s"%(title, question_body, tags)
+        print "\nTitle = %s \nQuestion = %s\nTags=%s"%(title, question_body, tags)
         
