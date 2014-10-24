@@ -19,6 +19,7 @@ from itertools import izip
 
 if(len(sys.argv) != 3):
     print "Correct usage : python evaluate_metric.py predictions_file actuals_file"
+    print "Example :  python evaluate_metric.py test_data_labels.csv test_data_labels.csv"
     sys.exit(1)
 test_file_name = sys.argv[1]
 pred_file_name = sys.argv[2]
