@@ -1,5 +1,5 @@
 Techniques to use to establish baseline
-
+--------------------------------------------------------------------------------
 1. Word Frequency Analysis
     ~> TFIDF
 
@@ -11,4 +11,20 @@ Techniques to use to establish baseline
 Lexical Graph
 
 Bayes Classiﬁer with TF-IDF
+
+--------------------------------------------------------------------------------
+Method described by Xiao-yu Jiang, in A Keyword Extraction Method Based on 
+Lexical Chains
+@ http://download.springer.com/static/pdf/524/chp%253A10.1007%252F978-3-540-92137-0_40.pdf?auth66=1414260742_a37eb16bbe53dea943a4202402153af7&ext=.pdf
+
+--> He has used it mainly for Chinese characters , where there is no boundary 
+between two characters . 
+
+Precision = |A ∩ B| / |A|
+Recall = |A ∩ B| / |B|
+where  |A| is the number of keywords extracted automatically,
+|B| is number of keyworkds present in test data,
+|A ∩ B| is the size of intersection between A and B 
+
+--------------------------------------------------------------------------------
 
