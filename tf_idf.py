@@ -113,8 +113,8 @@ for post_number, post_words in enumerate(all_posts_words):
         questions_id_file_line += snowball.stem(word.decode('utf-8-sig')).encode('utf-8-sig').lower()+' '
         word_score[word] = post_properties[post_number]['tf'][word] * idf[word]
 
-    questions_only_file.write(questions_only_file_line+'\n')
-    questions_with_id_file.write(questions_id_file_line+'\n')
+    questions_only_file.write(questions_only_file_line.encode('utf-8')+'\n')
+    questions_with_id_file.write(questions_id_file_line.encode('utf-8')+'\n')
     sorted_word_scores = sorted(word_score.items(), key=operator.itemgetter(1))[::-1]
     
     #print titles[post_number]+" "+questions[post_number]
