@@ -1,3 +1,4 @@
+import time
 import theano
 import theano.tensor as T
 import numpy         as np
@@ -6,7 +7,7 @@ from theano_toolkit import updates
 from numpy_hinton import print_arr
 from theano.printing import Print
 from climin import adadelta
-
+import cPickle
 def unroll(final_rep,W1_i,W1_m,b2_m,b2_i,n_steps):
 	def step(curr_rep,W1_m,b2_m,W1_i,b2_i):
 		next_rep  = T.dot(curr_rep,W1_m.T) + b2_m
@@ -87,17 +88,10 @@ def build_error(X,hidden,hidden1_reproduction,input_reproduction):
 	return input_reproduction_sqerror + hidden_reproduction_sqerror
 
 
-def train_model():
-        pass
-def predict():
-        pass
+def train_model(docs, wordvec_size,hidden_size, error_threshold, update_mu = 1e-4, update_eps = 0.95):
+	X,parameters,hidden,hidden1_reproduction,input_reproduction,unrolled = build_network(wordvec_size, hidden_size)
 
-if __name__ == '__main__':
-	X,parameters,hidden,hidden1_reproduction,input_reproduction,unrolled = build_network(8,64)
-	f = theano.function(
-			inputs  = [X],
-			outputs = [hidden,hidden1_reproduction,input_reproduction,unrolled]
-		)
+	#hidden, hidden_rep, input_rep, unrlld  = f(docs)
 
 	error = build_error(X,hidden,hidden1_reproduction,input_reproduction)
 	cost  = error # + 1e-6*sum( T.sum(abs(p)) for p in parameters )
@@ -107,31 +101,47 @@ if __name__ == '__main__':
 	mu  = T.dscalar('mu')
 	
 	train = theano.function(
-			inputs = [X,eps,mu],
-			updates = updates.adadelta(parameters,gradients,mu,eps),
+			inputs = [X, eps, mu],
+			updates = updates.adadelta(parameters, gradients, mu, eps),
 			outputs = error
 		)
 
-	#example = np.vstack((np.eye(8),np.eye(8)))
-	example = np.eye(8)
 	error = 10
-	lr = 0.0001
-	t = 0
         count = 0
-	while error > 0.0001:
-		error = train(example,1e-6,0.95)
-		#error = train(example,lr,0)
+	for i in range(50):
+                start_time = time.time()
+                error = 0
+                for doc in docs:
+                        error += train(doc, update_mu, update_eps)
+                if count % 1 == 0:
+                        print "iter=%d" % count,time.time() - start_time, error / len(docs)
                 count += 1
-		if count % 100 == 0:
-                        print count,error
-		t += 1
-		
-	
 
-	np.random.shuffle(example)
-	hidden, hidden_rep, input_rep, unrlld  = f(example)
+	f = theano.function(
+                inputs  = [X],
+                outputs = [hidden,hidden1_reproduction,input_reproduction,unrolled])
+        print "Finish count=%d error=%f" % (count, error)
+        return f
+#        return parameters, hidden, hidden1_reproduction, input_reproduction
+#def predict():
+#	f = theano.function(
+#			inputs  = [X],
+#			outputs = [hidden,hidden1_reproduction,input_reproduction,unrolled]
+#		)
 
-	print_arr(example)
-	print_arr(unrlld)
-	print_arr(parameters[1].get_value())
-#	print_arr(unrlld,hidden)
+if __name__ == '__main__':
+        example = np.array([[[0.1,0.2,0.3,0.2,0.5,0.6,0.7,0.8],[0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]]])
+        f = file('obj.save', 'rb')
+        #cPickle.dump(f, train_model(example, 8, 8, 0.001))
+        xx = train_model(example, 8, 8, 0.0001)
+        #cPickle.dump(xx, f)
+        
+        _, _, inp, _ = xx(example)
+        print inp
+
+        #print "Load model finish"
+        #_, _, inp, _ = xx(example)
+
+	#print_arr(example)
+	#print_arr(unrolld)
+	#print_arr(parameters[1].get_value())
