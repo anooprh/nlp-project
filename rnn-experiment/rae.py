@@ -88,7 +88,7 @@ def build_error(X,hidden,hidden1_reproduction,input_reproduction):
 	return input_reproduction_sqerror + hidden_reproduction_sqerror
 
 
-def train_model(docs, wordvec_size,hidden_size, error_threshold, update_mu = 1e-4, update_eps = 0.95):
+def train_model(docs, wordvec_size,hidden_size, error_threshold, update_mu = 1e-3, update_eps = 0.95):
 	X,parameters,hidden,hidden1_reproduction,input_reproduction,unrolled = build_network(wordvec_size, hidden_size)
 
 	#hidden, hidden_rep, input_rep, unrlld  = f(docs)
@@ -108,7 +108,7 @@ def train_model(docs, wordvec_size,hidden_size, error_threshold, update_mu = 1e-
 
 	error = 10
         count = 0
-	for i in range(50):
+	for i in range(100):
                 start_time = time.time()
                 error = 0
                 for doc in docs:
