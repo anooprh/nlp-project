@@ -41,8 +41,8 @@ for pred_line, test_line in izip(open(pred_file_name), open(test_file_name)):
     test_splits = test_line.strip().split(',')
     if(pred_splits[0] != test_splits[0]):
         print "Wrong ordering in input files\nDocId of two files must be in same order"
-    pred_labels = pred_splits[1:]
-    test_labels = test_splits[1:]
+    pred_labels = [x.lower() for x in pred_splits[1:]]
+    test_labels = [x.lower() for x in test_splits[1:]]
     size_pred_label = len(pred_labels)
     size_test_label = len(test_labels)
     size_intersection = size_of_common_elements(pred_labels, test_labels)
