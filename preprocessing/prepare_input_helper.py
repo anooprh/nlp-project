@@ -88,9 +88,9 @@ for post in posts:
         title = title.replace(c,"")
     words = word_tokenize(question_body)
     # Stemming and stop word removal
-    words = [w for w in words if not w in stopset]
-    words = [(snowball.stem(w)).lower() for w in words]
-    this_post_words  += words
+    # words = [w for w in words if not w in stopset]
+    # words = [(snowball.stem(w)).lower() for w in words]
+    # this_post_words  += words
 
 
     doc_hash = hashlib.sha256(title.encode('utf-8')+" "+question_body.encode('utf-8')).hexdigest()
