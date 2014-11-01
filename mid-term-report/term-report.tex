@@ -36,34 +36,43 @@
 	% This command causes the title to be created in the document
 	
 	\section{Introduction}
+	
 		As the goal of our project, we plan to do keyword extraction using deep learning. We are aiming to improve the performance of keyword extraction by deep learning techniques as compared to other techniques used previosuly.
 		We believe that Deep learning techniques can improve the performance because when it has been applied to other similar tasks, a significant improvement has been observed.
 		For example , Google speech recognizer uses Deep Neural Networks and accuracy is extremely high[cite].The area of applying deep learning to keyword extraction has not been explored much, hence we are trying to apply it and see how it performs.
 	\section{Related Work}
+	
 		Before diving into the details of our model and algorithm, we want to summarize the related work that has been done in the field of Keyword Extractions, how they can be applied to our project and how deep learning can be applied to solve this particular problem and our thoughts on why deep learning should give better performance compared to other algorithms.
-		\subsection{Baseline Algorithms}
-	\section{Progress}
-		As part of our schedule, we had planned to 
-		\begin{enumerate}
-		\item Be familiar with existing techniques and related works.
-		\item Learn \emph{Deep Learning} methods and how it can be used in NLP related applications.
-		\end{enumerate} 
-		by the mid term schedule
+		
+		\subsection{Baseline Algorithms of Keyword extraction}
+		
+		A survey was done by Lott.B[cite], and he summarizes that whenever he have a large corpus of data already available(as in our case), TF-IDF is the most accurate algorithms of the existing ones. 
+		
+		In TF-IDF model, we assign weight to each term in the model, and we choose the top'n' weighted words as the keywords for the text. The weight of each word is computed by taking into account the Term Frequency(TF) and Inverse Domain Frequency(IDF), where Term Frequency indicates how significant is the term to a spcicif document, and IDF takes into account how common the word is in the domain. We have implemented the benchmarks for this algorithms on our dataset.
+		
+		Other algorithms presently being used are some variant of TF-IDF with domain specific modifications. For example , one technique uses a Bayes classifier with TF-IDF to compute the weights and extract the keywords. 
+		There are techniques which are to be used when we dont have a corpus of text available to us. Frequency based single Document Keyword Extraction is one such technique. This techniques coputes word weights by measuring the frequency of text occurence within two punctuation marks in the text. Since we have text corpus available, we did not want to be compared against these classes of algorithms.
+		\subsection{Deep Learning Intution}
+	\section{Model Description}
+	
+	\section{Experiment and Results}
+		\subsection{Baseline Algorithm Results}
 		
 		To evaluate the performance of our approach compared to existing techniques, we have used Precision and Recall rates as our benchmarking standards.
-		  
-		As part of (1), we have implemnted TF-IDF (and Lexical Tree approach) for Keyword Extraction. With plain vanilla TF-IDF, the precision and recall rate is less than 10 \%. However, after preprocessing the data by using a stemmer, the accuracy is a modest 15-20\% on topics in our data set.
+		
+		We have implemnted TF-IDF (and Lexical Tree approach) for Keyword Extraction. With plain vanilla TF-IDF, the precision and recall rate is less than 10 \%. However, after preprocessing the data by using a stemmer, the accuracy is a modest 15-20\% on topics in our data set.
 		We have used portland stemmer, available as part of open source NLTK(Natural Language Processing Toolkit) project.As part of survey paper[6], we found out that the existing standard for key word extraction uses Lexical Tree approach and we are coming up with the precision and recall rates for Lexical Trees approach \\\{Report exact figures here\}.
 		
-		As part of (2), we have prepared the following flow for the midterm report.
-		\\\{Insert that block diagram here\}. 
-		\\\{Insert more details here later\}
+		\subsection{Dataset}
 		
-	\section{Dataset}
 		We had identified data from stackexchange( \url{https://archive.org/download/stackexchange/stackexchange_archive.torrent}) to be a suitable data set for our project. 
+		
 		Of the 20 GB, available to us, we are using only 500 MB of data, on about 20 topics for our evaluation. We felt this was enough for testing purposes, and once we decide on the model, we will make use of all the data set available to us. Working with bigger datasets is a hassle when no concrete model is available and hence we stopped at 500MB.
 		All our results and observations have been made on this 500MB of dataset, which we have cleaned and formatted for our applications. 
 	
+	\section{Pending Work}
+	
+
 	% An article style is separated into sections and subsections with 
 	%   markup such as this.  Use \section*{Principles} for unnumbered sections.
 	\section{References}
