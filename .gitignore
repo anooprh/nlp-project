@@ -1,2 +1,4 @@
 data/*
 .idea/*
+preprocessing/cleaned_data/*
+preprocessing/extracted/*

@@ -108,7 +108,7 @@ def train_model(docs, wordvec_size,hidden_size, error_threshold, update_mu = 1e-
 
 	error = 10
         count = 0
-	for i in range(100):
+	for i in range(10):
                 start_time = time.time()
                 error = 0
                 for doc in docs:

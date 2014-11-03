@@ -13,7 +13,7 @@ addpath(genpath('tools/'))
 % Hyperparameters
 %%%%%%%%%%%%%%%%%%%%%%
 % set this to 1 to train the model and to 0 for just testing the RAE features (and directly training the classifier)
-params.trainModel = 0;
+params.trainModel = 1;
 
 % node and word size
 params.embedding_size = 50;
@@ -85,6 +85,7 @@ theta = initializeParameters(params.embedding_size, params.embedding_size, cat_s
 %%%%%%%%%%%%%%%%%%%%%%
 % Parallelize if on cluster
 %%%%%%%%%%%%%%%%%%%%%%
+isunix
 if isunix && matlabpool('size') == 0
     numCores = feature('numCores');
     if numCores==16
@@ -107,7 +108,8 @@ if params.trainModel
         theta, options);
     theta = opttheta;
     
-    [W1, W2, W3, W4, b1, b2, b3, Wcat,bcat, We] = getW(1, theta, params.embedding_size, cat_size, dictionary_length);
+    [W1, W2, W3, W4, b1, b2, b3, Wcat,bcat, We] = getW(0, theta, params.embedding_size, cat_size, dictionary_length);
+    Wcat
     
     save(['../output/savedParams_CV' num2str(params.CVNUM) '.mat'],'opttheta','params','options');
     classifyWithRAE
