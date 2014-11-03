@@ -112,7 +112,7 @@ public class RAEFeatureExtractor {
 					double[] feature = tree.getFeaturesVector();
 					lock.lock();
 					{
-						ReviewFeatures r = new ReviewFeatures(null, data.getLabel(), index, feature, tree.T[tree.T.length - 1].Features);
+						ReviewFeatures r = new ReviewFeatures(null, data.getLabel(), index, feature);
 						DataFeatures[index] = r;
 					}
 					lock.unlock();

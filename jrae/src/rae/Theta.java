@@ -9,8 +9,8 @@ import org.jblas.*;
  */
 public class Theta implements Serializable{
 	
-	public DoubleMatrix W1, W2, W3, W4;
-	public DoubleMatrix b1, b2, b3;
+	DoubleMatrix W1, W2, W3, W4;
+	DoubleMatrix b1, b2, b3;
 	
 	//TODO Remove public visibility
 	public double[] Theta;

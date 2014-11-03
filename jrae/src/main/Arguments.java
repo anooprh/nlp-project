@@ -10,6 +10,7 @@ import java.util.Map;
 
 import parallel.Parallel;
 import parallel.ThreadPool;
+
 import util.CommandLineUtils;
 import classify.LabeledDatum;
 
@@ -26,7 +27,8 @@ public class Arguments {
 	String ClassifierFile = null;
 	String featuresOutputFile = null;
 	String ProbabilitiesOutputFile = null;
-	boolean OnlyFeature = false;
+	
+	
 	boolean TrainModel = false, CurriculumLearning = false;
 	int NumFolds = 10, MaxIterations = 80, EmbeddingSize = 50, CatSize = 1;
 	int DictionarySize, hiddenSize, visibleSize;
@@ -36,7 +38,6 @@ public class Arguments {
 	boolean exitOnReturn = false;
 	
 	LabeledDataSet<LabeledDatum<Integer, Integer>, Integer, Integer> Dataset = null;
-	String DocFeature;
 
 	public void parseArguments(String[] args) throws IOException {
 		Map<String, String> argMap = CommandLineUtils
@@ -53,11 +54,7 @@ public class Arguments {
 
 		if (argMap.containsKey("-MaxIterations"))
 			MaxIterations = Integer.parseInt(argMap.get("-MaxIterations"));
-		if (argMap.containsKey("-DocFeature")){
-			System.err.println("DocFeature");
-			DocFeature = argMap.get("-DocFeature");
-		}
-		
+
 		if (argMap.containsKey("-embeddingSize"))
 			EmbeddingSize = Integer.parseInt(argMap.get("-embeddingSize"));
 
@@ -81,9 +78,6 @@ public class Arguments {
 
 		if (argMap.containsKey("-TrainModel"))
 			TrainModel = Boolean.parseBoolean(argMap.get("-TrainModel"));
-		
-		if (argMap.containsKey("-OnlyFeature"))
-			OnlyFeature = Boolean.parseBoolean(argMap.get("-OnlyFeature"));
 
 		if (argMap.containsKey("-WordMapFile"))
 		{

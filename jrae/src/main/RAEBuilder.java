@@ -2,14 +2,10 @@ package main;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.jblas.DoubleMatrix;
@@ -19,11 +15,13 @@ import math.DifferentiableMatrixFunction;
 import math.Minimizer;
 import math.Norm1Tanh;
 import math.QNMinimizer;
+
 import classify.Accuracy;
 import classify.ClassifierTheta;
 import classify.LabeledDatum;
-import classify.ReviewFeatures;
+
 import classify.SoftmaxClassifier;
+
 import rae.FineTunableTheta;
 import rae.RAECost;
 import rae.RAEFeatureExtractor;
@@ -43,7 +41,6 @@ public class RAEBuilder {
     RAEBuilder rae = new RAEBuilder();
 
     Arguments params = new Arguments();
-    // Parse the arguments.
     params.parseArguments(args);
     if (params.exitOnReturn)
       return;
@@ -54,8 +51,6 @@ public class RAEBuilder {
     if (params.TrainModel) {
       System.out.println("Training the RAE. Model file will be saved in "
           + params.ModelFile);
-
-      // Train the model.
       FineTunableTheta tunedTheta = rae.train(params);
       tunedTheta.Dump(params.ModelFile);
 
@@ -66,7 +61,6 @@ public class RAEBuilder {
           tunedTheta, params.AlphaCat, params.Beta, params.CatSize,
           params.Dataset.Vocab.size(), rae.f);
 
-      // Train the classifier
       List<LabeledDatum<Double, Integer>> classifierTrainingData = fe
           .extractFeaturesIntoArray(params.Dataset, params.Dataset.Data,
               params.TreeDumpDir);
@@ -92,110 +86,65 @@ public class RAEBuilder {
 
       System.out.println("Dumping complete");
 
-    }else{
-    	if(params.OnlyFeature){    
-    		System.out
-    			.println("Using the trained RAE. Model file retrieved from "
-    					+ params.ModelFile
-    					+ "\nNote that this overrides all RAE specific arguments you passed.");
-		    PrintStream out = new PrintStream(params.DocFeature);
-    		FineTunableTheta tunedTheta = rae.loadRAE(params);
-    		assert tunedTheta.getNumCategories() == params.Dataset.getCatSize();
-    		RAEFeatureExtractor fe = new RAEFeatureExtractor(params.EmbeddingSize,
-    				tunedTheta, params.AlphaCat, params.Beta, params.CatSize,
-    				params.Dataset.Vocab.size(), rae.f);
-    		List<LabeledDatum<Double, Integer>> classifierTestingData = fe
-    				.extractFeaturesIntoArray(params.Dataset, params.Dataset.TestData,
-    						params.TreeDumpDir);
+    } else {
+      System.out
+          .println("Using the trained RAE. Model file retrieved from "
+              + params.ModelFile
+              + "\nNote that this overrides all RAE specific arguments you passed.");
 
-    		for(Object f : classifierTestingData){
-    			ReviewFeatures x = (ReviewFeatures)f;
-    			for(double d : x.x.data){
-    		        out.printf("%.8f ", d);
-    			}
-    			out.println();
-    		}
-    	}else {
-    		System.out
-    		.println("Using the trained RAE. Model file retrieved from "
-    				+ params.ModelFile
-    				+ "\nNote that this overrides all RAE specific arguments you passed.");
-    		System.err.println("Now loading the RAE model");
-    		FineTunableTheta tunedTheta = rae.loadRAE(params);
-    		assert tunedTheta.getNumCategories() == params.Dataset.getCatSize();
-    		System.err.println("Loading RAE end, and now loading Classifier");
+      FineTunableTheta tunedTheta = rae.loadRAE(params);
+      assert tunedTheta.getNumCategories() == params.Dataset.getCatSize();
 
-    		SoftmaxClassifier<Double, Integer> classifier = null;
-    		try {
-    			classifier = rae.loadClassifier(params);
-    		} catch (IOException e) {
-    			if (params.Dataset.Data.size() == 0)
-    				throw e;
-    			System.err.println("Your classifier could not be loaded.");
-    			System.err.println("Learning the classifier again ...");
-    			classifier = rae.trainClassifier(params, tunedTheta);
-    			classifier.Dump(params.ClassifierFile);
-    		}
-    		System.err.println("Loading Classifier end");
-    		RAEFeatureExtractor fe = new RAEFeatureExtractor(params.EmbeddingSize,
-    				tunedTheta, params.AlphaCat, params.Beta, params.CatSize,
-    				params.Dataset.Vocab.size(), rae.f);
+      SoftmaxClassifier<Double, Integer> classifier = null;
+      try {
+        classifier = rae.loadClassifier(params);
+      } catch (IOException e) {
+        if (params.Dataset.Data.size() == 0)
+          throw e;
+        System.err.println("Your classifier could not be loaded.");
+        System.err.println("Learning the classifier again ...");
+        classifier = rae.trainClassifier(params, tunedTheta);
+        classifier.Dump(params.ClassifierFile);
+      }
 
-    		if (params.Dataset.Data.size() > 0) {
-    			System.err.println("There is training data in the directory.");
-    			System.err
-    			.println("It will be ignored when you are not in the training mode.");
-    		}
+      RAEFeatureExtractor fe = new RAEFeatureExtractor(params.EmbeddingSize,
+          tunedTheta, params.AlphaCat, params.Beta, params.CatSize,
+          params.Dataset.Vocab.size(), rae.f);
 
-    		List<LabeledDatum<Double, Integer>> classifierTestingData = fe
-    				.extractFeaturesIntoArray(params.Dataset, params.Dataset.TestData,
-    						params.TreeDumpDir);
-    		
-    		Accuracy TestAccuracy = classifier.test(classifierTestingData);
-    		if (params.isTestLabelsKnown) {
-    			System.out.println("Test Accuracy : " + TestAccuracy);
-    		}
+      if (params.Dataset.Data.size() > 0) {
+        System.err.println("There is training data in the directory.");
+        System.err
+            .println("It will be ignored when you are not in the training mode.");
+      }
 
-    		if (params.featuresOutputFile != null)
-    			rae.DumpFeatures(params.featuresOutputFile, classifierTestingData);
+      List<LabeledDatum<Double, Integer>> classifierTestingData = fe
+          .extractFeaturesIntoArray(params.Dataset, params.Dataset.TestData,
+              params.TreeDumpDir);
 
-    		if (params.ProbabilitiesOutputFile != null)
-    			rae.DumpProbabilities(params.ProbabilitiesOutputFile, classifier
-    					.getTestScores());
+      Accuracy TestAccuracy = classifier.test(classifierTestingData);
+      if (params.isTestLabelsKnown) {
+        System.out.println("Test Accuracy : " + TestAccuracy);
+      }
 
-    		// if (params.TreeDumpDir != null)
-    		// rae.DumpTrees(testTrees, params.TreeDumpDir, params.Dataset,
-    		// params.Dataset.TestData);
-    	}
+      if (params.featuresOutputFile != null)
+        rae.DumpFeatures(params.featuresOutputFile, classifierTestingData);
+
+      if (params.ProbabilitiesOutputFile != null)
+        rae.DumpProbabilities(params.ProbabilitiesOutputFile, classifier
+            .getTestScores());
+
+      // if (params.TreeDumpDir != null)
+      // rae.DumpTrees(testTrees, params.TreeDumpDir, params.Dataset,
+      // params.Dataset.TestData);
     }
+
     System.exit(0);
   }
-  public static Collection<Double> outputFeature(DoubleMatrix W1,
-		  DoubleMatrix W2, DoubleMatrix b1, DoubleMatrix We, Collection<Integer> words){
-	  LinkedList<DoubleMatrix> matrix = new LinkedList<DoubleMatrix>();
-	  for(Integer i : words){
-		  DoubleMatrix m = new DoubleMatrix();
-		  We.getColumn(i, m);
-		  matrix.add(m);
-	  }
-	  /*
-	  while(matrix.size() != 1){
-		  double max_score =
-		  Iterator<DoubleMatrix> mite = matrix.iterator();
-		  DoubleMatrix first = mite.next();
-		  /*
-		  while(mite.hasNext()){
-			  
-		  }
-	  }
-		  */
-	  
-	  return null;
-  }
+
   public void DumpFeatures(String featuresOutputFile,
       List<LabeledDatum<Double, Integer>> Features)
       throws FileNotFoundException {
-	  
+
     PrintStream out = new PrintStream(featuresOutputFile);
     for (LabeledDatum<Double, Integer> data : Features) {
       Collection<Double> features = data.getFeatures();
@@ -222,11 +171,10 @@ public class RAEBuilder {
 
   private FineTunableTheta train(Arguments params) throws IOException,
       ClassNotFoundException {
-	// Init the parameters
+
     InitialTheta = new FineTunableTheta(params.EmbeddingSize,
         params.EmbeddingSize, params.CatSize, params.DictionarySize, true);
-    
-    // Init the word vectors. We will change it later.
+
     DoubleMatrix InitialWe = InitialTheta.We.dup();
     
     RAECost RAECost = null;

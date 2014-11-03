@@ -50,8 +50,10 @@ public class ParsedReviewData extends LabeledDataSet<LabeledDatum<Integer,Intege
 		File Dir = new File(DirectoryName);
 		File labelSetFile = null, wordMapFile = null;
 		String[] files = Dir.list( );
+		
 		wordMapFile = (wordmapFileName == null)?
 				new File (DirectoryName,"wordmap.map"): new File (wordmapFileName);
+
 		labelSetFile = (labelsetFileName == null)?
 				new File (DirectoryName,"labels.map"): new File (labelsetFileName);
 		
@@ -59,7 +61,6 @@ public class ParsedReviewData extends LabeledDataSet<LabeledDatum<Integer,Intege
 		NumTestExamples = 0;
 		for(String fileName : files )
 		{
-			System.err.println(fileName);
 			String FullFileName = (new File(Dir,fileName)).getAbsolutePath();
 			if(isFile(FullFileName))
 				if(isTestDataFile(FullFileName))
@@ -117,7 +118,7 @@ public class ParsedReviewData extends LabeledDataSet<LabeledDatum<Integer,Intege
 		
 		System.out.println("}");
 	}
-	// 读取训练数据
+	
 	private void LoadTrainingData (File Dir, String[] files) throws IOException
 	{
 		int CurrentLabel = 0;
@@ -141,7 +142,6 @@ public class ParsedReviewData extends LabeledDataSet<LabeledDatum<Integer,Intege
 		Set<Integer> testLabelsSeen = new HashSet<Integer>();
 		for(String fileName : files )
 		{
-			System.err.println("Now reading test:" + fileName);
 			String FullFileName = (new File(Dir,fileName)).getAbsolutePath();
 			if (isTestDataFile(FullFileName))
 			{
