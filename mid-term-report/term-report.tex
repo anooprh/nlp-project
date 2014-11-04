@@ -8,7 +8,7 @@
 
 \usepackage[pdftex]{graphicx}
 \usepackage{url}
-
+	
 % These are additional packages for "pdflatex", graphics, and to include
 % hyperlinks inside a document.
 
@@ -59,9 +59,22 @@
 		\subsection{Baseline Algorithm Results}
 		
 		To evaluate the performance of our approach compared to existing techniques, we have used Precision and Recall rates as our benchmarking standards.
+		We have formally defined these parameters as 
 		
-		We have implemnted TF-IDF (and Lexical Tree approach) for Keyword Extraction. With plain vanilla TF-IDF, the precision and recall rate is less than 10 \%. However, after preprocessing the data by using a stemmer, the accuracy is a modest 15-20\% on topics in our data set.
-		We have used portland stemmer, available as part of open source NLTK(Natural Language Processing Toolkit) project.As part of survey paper[6], we found out that the existing standard for key word extraction uses Lexical Tree approach and we are coming up with the precision and recall rates for Lexical Trees approach \\\{Report exact figures here\}.
+		$Precision = \frac{ sizeof(A \bigcap B)}{sizeof(A)}$
+		
+		$Recall    = \frac{ sizeof(A \bigcap B)}{sizeof(A)}$
+		
+		where A is the set of predicted tags and B is the set of actual tags.
+		
+		We have implemnted TF-IDF and Bayseian Classifier approach as described by the survey for Keyword Extraction on our data set. With plain vanilla TF-IDF, the average precision and recall rates were less than 10 \%. However, after preprocessing the data by using a stemmer, the accuracy is a modest 15-20\% on topics in our data set for as the best performer.
+		We have used portland stemmer, available as part of open source NLTK(Natural Language Processing Toolkit) project.
+		The Bayesian Classifier is similar to TF-IDF apporach except that it takes into account the position of the word in text. The weight of each term is reduced as the log of the its position from the begining of the sentence.
+		
+		\includegraphics[width=0.5\textwidth]{../baseline/TfIdf.jpg}
+		\includegraphics[width=0.5\textwidth]{../baseline/BayesPrecisionClassifier.jpg}
+				
+		As part of survey paper[6], we found out that the existing standard for key word extraction uses Lexical Tree approach and we are coming up with the precision and recall rates for Lexical Trees approach \\\{Report exact figures here\}.
 		
 		\subsection{Dataset}
 		

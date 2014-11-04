@@ -107,7 +107,7 @@ for post in posts:
 
     tag_file_line = doc_hash
     for tag in tags:
-        tag_file_line += ","+(snowball.stem(tag.decode('utf-8-sig'))).encode('utf-8-sig').lower()
+        tag_file_line += ","+(snowball.stem(tag.decode('utf-8-sig'))).encode('utf-8').lower()
 
     questions_only_file.write(questions_only_file_line.encode('utf-8')+'\n')
     questions_with_id_file.write(questions_id_file_line.encode('utf-8')+'\n')
