@@ -1,0 +1,1 @@
+word,no_of_occurences,first_occurence,last_occurence,lexChainSpanScore,lexChainScore,directLexChainSpanScore,directLexChainScore,istag?

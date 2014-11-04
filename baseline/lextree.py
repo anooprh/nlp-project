@@ -7,10 +7,11 @@ Preferred Usage :
 
 python prepare_input_helper.py -i 7z_file -o questions_cleaned -w questions_cleaned_with_id -t tag_file
 '''
+import copy
 from getopt import getopt
+import json
 import os
 import re
-import shutil
 import string
 import itertools
 import nltk
@@ -37,6 +38,8 @@ for opt , arg in opts:
         input_filename = arg
 
 input_filename = '/home/anoop/Workspace/10701-project/data/stackexchange/academia.stackexchange.com.7z'
+feature_file_name = 'lextree_features_1.txt'
+feature_file = open(feature_file_name, 'w')
 
 if input_filename is None:
     print "Input file not specified"
@@ -99,10 +102,10 @@ for post in posts:
         features[noun]['no_of_occurences'] = no_of_occurences
         features[noun]['first_occurence'] = first_occurence
         features[noun]['last_occurence'] = last_occurence
-        features[noun]['lexChainSpanScore'] = last_occurence
-        features[noun]['directLexChainSpanScore'] = last_occurence
-        features[noun]['lexChainScore'] = last_occurence
-        features[noun]['directLexChainScore'] = last_occurence
+        features[noun]['lexChainSpanScore'] = 0
+        features[noun]['directLexChainSpanScore'] = 0
+        features[noun]['lexChainScore'] = 0
+        features[noun]['directLexChainScore'] = 0
 
 
         for wn_synset in wn_synsets:
@@ -269,14 +272,29 @@ for post in posts:
 
                 features[node_utf]['lexChainSpanScore'] = lex_chain_score
 
-    for noun in nouns:
-        print features[noun]
-    print("*"*80)
-    
+
     tags = post.get('Tags')
     tags = tags.replace('><',',').replace('<','').replace('>','')
     tags = tags.split(',')
 
+    features_for_print = copy.deepcopy(features)
+    for noun in nouns:
+        features_for_print[noun]['noun'] = noun
+        if noun in tags:
+            features_for_print[noun]['tag'] = 'True'
+        else:
+            features_for_print[noun]['tag'] = 'False'
+        feature_file.write(features_for_print[noun]['noun'].encode('utf-8')+",")
+        feature_file.write(str(features_for_print[noun]['no_of_occurences'])+",")
+        feature_file.write(str(features_for_print[noun]['first_occurence'])+",")
+        feature_file.write(str(features_for_print[noun]['last_occurence'])+",")
+        feature_file.write(str(features_for_print[noun]['lexChainSpanScore'])+",")
+        feature_file.write(str(features_for_print[noun]['lexChainScore'])+",")
+        feature_file.write(str(features_for_print[noun]['directLexChainSpanScore'])+",")
+        feature_file.write(str(features_for_print[noun]['directLexChainScore'])+",")
+        feature_file.write(features_for_print[noun]['tag'])
+        feature_file.write("\n")
 
+feature_file.close()
 print "Done . . "
 subprocess.call(['rm', '-rf', temp_dir])
