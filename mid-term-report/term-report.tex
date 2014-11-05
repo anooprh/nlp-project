@@ -8,7 +8,7 @@
 
 \usepackage[pdftex]{graphicx}
 \usepackage{url}
-	
+\usepackage{amsmath}
 % These are additional packages for "pdflatex", graphics, and to include
 % hyperlinks inside a document.
 
@@ -54,7 +54,71 @@
 		There are techniques which are to be used when we dont have a corpus of text available to us. Frequency based single Document Keyword Extraction is one such technique. This techniques coputes word weights by measuring the frequency of text occurence within two punctuation marks in the text. Since we have text corpus available, we did not want to be compared against these classes of algorithms.
 		\subsection{Deep Learning Intution}
 	\section{Model Description}
+\subsection{Neural language model}
+In traditional NLP model, the input of the classifer is just one-hot features or TF-IDF features of text. However, this model suffers from the curse of dimensionality. When the number of documents in the corpus becomes large, the matrix of features will become sparse. Therefore, Bengio et al.\cite{Bengio2003NLP} proposed a new neural language model which generates distributed representations for each word in the corpus. That means each word in the documents has a fixed length of feature vector. With the feature vectors of each term, we can measure the similarity between different words or generate the vector representation of each document.
+
+In our model, each word will be first transformed to word vector by the tool named word2vec\cite{mikolov2013efficient}. The tool will first train the neural language model on our data set and then generate the word vector of each term.
+
+\subsection{Recursive Autoencoder}
+Autoencoder is a neural network model that learns the function $f(x)=x$ in order to learn the reduced representation of the input text. As we can see in the figure 1, autoencoder is only a three-layer neural network. We want to utilize the hidden layer to generate the similar vector as the input vector. And after traning the model, the hidden layer can be treated as the condensed feature of the input vectors. Therefore, the training objective is to minimize the distance which is known as reconstruction error between the input and the output of NN. When applying such structure into our model, the input of the autoencoder is word vectors of two terms. After traning the model, the vector of hidden layer can be seen as the condensed feature of these two words.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width = 0.8\linewidth]{figure/autoencoder}
+\caption{Autoencoder}
+\label{fig:ae}
+\end{figure}
+
+However, only using the structure of autoencoder may not effectively model the text. If we set the input of autoencoder as the vectors of all terms in one document and try to generate the condensed features of the document, there will be so many parameters to optimize and the structure of the text is not utilized. In order to solve the problem, the structure of recursive autoencoder was proposed to model the hierarchical structure. Figure 2 shows the structure of recursive autoencoder.
+\begin{figure}[ht]
+\centering
+\includegraphics[width = 1.0\linewidth]{figure/recursiveautoencoder}
+\caption{Recursive Autoencoder}
+\label{fig:rae}
+\end{figure}
+
+
+In each layer, several terms are combined to generate the condensed features which will be utilized as the input of the next layer. At the final layer of recursive autoencoder, the vector of hidden layer will be the vector representation of the whole documents.
+
+One of the key problem in such structure is how to combine different terms. There are mainly two ways. One way is to adopt the grammer tree which generated in advance. Each word will be combined in the same way as they are merge in the grammer tree. Another way is to utilize the greedy algorithm. At each layer, each pair of the adjacent words will be first combined and output reconstruction error. Then the pair of words with smallest error will be first combined. Using this greedy algorithm, the vector of each document can also be generated. In the experimental part, the effectiveness of the two structured will be compared.
+
+\subsection{Semi-supervised Recursive Autoencoder}
+In the traditional recursive autoencoder model, the network is trained only by the document itself. Therefore, it is the unsupervised model. In certain scenario, the label information of documents can be incorporated into the model and turn the model into a semi-supervised model.
+
+One of the semi-superivised recursive autoencoder model has been proposed by socher et al.\cite{socher2011semi} in order to handle the issue of sentiment analysis. The structure of recursive autoencoder is presented as follows:
+\begin{figure}[ht]
+\centering
+\includegraphics[width = 1.0\linewidth]{figure/semiautoencoder}
+\caption{Semi-supervised Autoencoder}
+\label{fig:sae}
+\end{figure}	
 	
+As we can see from the figure, the input of the model is also the distributed representation. After being processed by the hidden layer, the output layer reconstructs the input vector. In order to measure the performance of the representation, the reconstruction error is computed as the distance between the input vector and output vector. Also we can assign different terms with different weights. So
+\begin{equation}
+\begin{split}
+ & E_{rec}([c_{1};c_{2}];\theta) \\
+ & = \frac{n_{1}}{n_{1}+n_{2}} ||c_{1}-c_{1}'||^2 + \frac{n_{2}}{n_{1}+n_{2}} ||c_{2}-c_{2}'||^2\\
+ \end{split}
+\end{equation}
+, where n denote the number of words. In addition, c denotes the vector of input and c' present the vector of output.
+
+Also, in order to predict the sentiment of the sentence, an extra output unit is added to generate the sentiment label. And this generated label will be compared with the correct label. A softmax function is utilized in this scenario to generate the probability of each label. And author use the cross-entropy error to measure the correctness of the model.
+\begin{equation}
+\begin{split}
+ & E_{cE}(p,t;\theta) \\
+ & = -\sum_{k=1}^{K}{t_{k}\log{}d_{k}(p;\theta)}\\
+ \end{split}
+\end{equation}
+, where $t_{k}$ denotes the target label and $d_{k}$ denotes the probability of each label.
+
+After combining the two process, we can compute the reconstruction error and cross-entropy error. And the objective is to minimize the weighted sum of the two errors as follows:
+\begin{equation}
+\begin{split}
+ & E([c_{1}; c_{2}]s, ps, t, θ) = \\
+ & = \alpha E_{rec}([c_{1}; c_{2}]_{s}; \theta) + (1 - \alpha)E_{cE}(p_{s}, t; \theta).
+\\
+ \end{split}
+\end{equation}
 	\section{Experiment and Results}
 		\subsection{Baseline Algorithm Results}
 		
@@ -83,20 +147,24 @@
 		Of the 20 GB, available to us, we are using only 500 MB of data, on about 20 topics for our evaluation. We felt this was enough for testing purposes, and once we decide on the model, we will make use of all the data set available to us. Working with bigger datasets is a hassle when no concrete model is available and hence we stopped at 500MB.
 		All our results and observations have been made on this 500MB of dataset, which we have cleaned and formatted for our applications. 
 	
-	\section{Pending Work}
-	
 
-	% An article style is separated into sections and subsections with 
-	%   markup such as this.  Use \section*{Principles} for unnumbered sections.
-	\section{References}
-    \begin{enumerate}
-        \item Bengio Y, Schwenk H, Senécal J S, et al. Neural probabilistic language models[M]//Innovations in Machine Learning. Springer Berlin Heidelberg, 2006: 137-186.
-        \item Socher R, Perelygin A, Wu J Y, et al. Recursive deep models for semantic compositionality over a sentiment treebank[C]//Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP). 2013: 1631-1642.
-        \item Socher R, Lin C C, Manning C, et al. Parsing natural scenes and natural language with recursive neural networks[C]//Proceedings of the 28th International Conference on Machine Learning (ICML-11). 2011: 129-136.
-        \item Collobert R, Weston J, Bottou L, et al. Natural language processing (almost) from scratch[J]. The Journal of Machine Learning Research, 2011, 12: 2493-2537.
-        \item Matsuo Y, Ishizuka M. Keyword extraction from a single document using word co-occurrence statistical information[J]. International Journal on Artificial Intelligence Tools, 2004, 13(01): 157-169.
-        \item Lott B. Survey of Keyword Extraction Techniques[J]. UNM Education, 2012.
-        \item Hasan K S, Ng V. Automatic Keyphrase Extraction: A Survey of the State of the Art[J].
-    \end{enumerate}
+\section{Pending Work}
+	
+	\bibliography{bib/dp}
+	\bibliographystyle{plain}
+%\bibliographystyle{IEEEtran}
+
+%	% An article style is separated into sections and subsections with 
+%	%   markup such as this.  Use \section*{Principles} for unnumbered sections.
+%	\section{References}
+%    \begin{enumerate}
+%        \item Bengio Y, Schwenk H, Senécal J S, et al. Neural probabilistic language models[M]//Innovations in Machine Learning. Springer Berlin Heidelberg, 2006: 137-186.
+%        \item Socher R, Perelygin A, Wu J Y, et al. Recursive deep models for semantic compositionality over a sentiment treebank[C]//Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP). 2013: 1631-1642.
+%        \item Socher R, Lin C C, Manning C, et al. Parsing natural scenes and natural language with recursive neural networks[C]//Proceedings of the 28th International Conference on Machine Learning (ICML-11). 2011: 129-136.
+%        \item Collobert R, Weston J, Bottou L, et al. Natural language processing (almost) from scratch[J]. The Journal of Machine Learning Research, 2011, 12: 2493-2537.
+%        \item Matsuo Y, Ishizuka M. Keyword extraction from a single document using word co-occurrence statistical information[J]. International Journal on Artificial Intelligence Tools, 2004, 13(01): 157-169.
+%        \item Lott B. Survey of Keyword Extraction Techniques[J]. UNM Education, 2012.
+%        \item Hasan K S, Ng V. Automatic Keyphrase Extraction: A Survey of the State of the Art[J].
+%    \end{enumerate}
 
 \end{document}

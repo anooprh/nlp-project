@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bengio2003NLP}
+Yoshua Bengio, R{\'e}jean Ducharme, Pascal Vincent, and Christian Janvin.
+\newblock A neural probabilistic language model.
+\newblock {\em J. Mach. Learn. Res.}, 3:1137--1155, March 2003.
+
+\bibitem{mikolov2013efficient}
+Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{socher2011semi}
+Richard Socher, Jeffrey Pennington, Eric~H Huang, Andrew~Y Ng, and
+  Christopher~D Manning.
+\newblock Semi-supervised recursive autoencoders for predicting sentiment
+  distributions.
+\newblock In {\em Proceedings of the Conference on Empirical Methods in Natural
+  Language Processing}, pages 151--161. Association for Computational
+  Linguistics, 2011.
+
+\end{thebibliography}
