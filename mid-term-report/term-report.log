@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  5 NOV 2014 01:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  5 NOV 2014 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -325,20 +325,20 @@ Overfull \hbox (17.447pt too wide) in paragraph at lines 157--158
 <dist.pdf, id=41, 794.97pt x 614.295pt>
 File: dist.pdf Graphic file (type pdf)
  <use dist.pdf>
-Package pdftex.def Info: dist.pdf used on input line 168.
+Package pdftex.def Info: dist.pdf used on input line 169.
 (pdftex.def)             Requested size: 397.48402pt x 307.14674pt.
  [7 <./dist.pdf>]
 <DataFlow.png, id=57, 817.0525pt x 601.24625pt>
 File: DataFlow.png Graphic file (type png)
  <use DataFlow.png>
-Package pdftex.def Info: DataFlow.png used on input line 185.
+Package pdftex.def Info: DataFlow.png used on input line 188.
 (pdftex.def)             Requested size: 490.23529pt x 360.75052pt.
 
-Overfull \hbox (20.4803pt too wide) in paragraph at lines 185--186
+Overfull \hbox (20.4803pt too wide) in paragraph at lines 188--189
 [][] 
  []
 
-[8 <./DataFlow.png>] (./term-report.bbl) [9] (./term-report.aux) ) 
+(./term-report.bbl [8] [9 <./DataFlow.png>]) [10] (./term-report.aux) ) 
 Here is how much of TeX's memory you used:
  2842 strings out of 493117
  39497 string characters out of 6135433
@@ -347,25 +347,25 @@ Here is how much of TeX's memory you used:
  10676 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,16n,23p,800b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/te
-xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/
-texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive
-/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2
-014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/texmf
--dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on term-report.pdf (9 pages, 594506 bytes).
+</usr/lo
+cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/loc
+al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/l
+ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/lo
+cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/
+texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/20
+14/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
+4/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on term-report.pdf (10 pages, 595673 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
