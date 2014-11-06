@@ -2,3 +2,9 @@ data/*
 .idea/*
 preprocessing/cleaned_data/*
 preprocessing/extracted/*
+
+mid-term-report/term-report.aux        
+mid-term-report/term-report.log        
+mid-term-report/term-report.pdf        
+mid-term-report/term-report.synctex.gz 
+
