@@ -38,25 +38,27 @@
 	
 	\section{Introduction}
 	
-		As the goal of our project, we plan to do keyword extraction using deep learning. We are aiming to improve the performance of keyword extraction by deep learning techniques as compared to other techniques used previosuly.
+		As the goal of our project, we plan to do keyword extraction using deep learning. We are aiming to improve the performance of keyword extraction by deep learning techniques as compared to other techniques used previously.
 		We believe that Deep learning techniques can improve the performance because when it has been applied to other similar tasks, a significant improvement has been observed.
-		For example , Google speech recognizer uses Deep Neural Networks and accuracy is extremely high[cite].The area of applying deep learning to keyword extraction has not been explored much, hence we are trying to apply it and see how it performs.
+		For example , Google speech recognizer uses Deep Neural Networks and accuracy is extremely high\cite{hinton2012deep}.The area of applying deep learning to keyword extraction has not been explored much, hence we are trying to apply it and see how it performs.
 	\section{Related Work}
 	
 		Before diving into the details of our model and algorithm, we want to summarize the related work that has been done in the field of Keyword Extractions, how they can be applied to our project and how deep learning can be applied to solve this particular problem and our thoughts on why deep learning should give better performance compared to other algorithms.
 		
 		\subsection{Baseline Algorithms of Keyword extraction}
 		
-		A survey was done by Lott.B[cite], and he summarizes that whenever he have a large corpus of data already available(as in our case), TF-IDF is the most accurate algorithms of the existing ones. 
+		A survey was done by Lott.B\cite{lott2012survey}, and he summarizes that whenever he have a large corpus of data already available(as in our case), TF-IDF is the most accurate algorithms of the existing ones. 
 		
-		In TF-IDF model, we assign weight to each term in the model, and we choose the top'n' weighted words as the keywords for the text. The weight of each word is computed by taking into account the Term Frequency(TF) and Inverse Domain Frequency(IDF), where Term Frequency indicates how significant is the term to a spcicif document, and IDF takes into account how common the word is in the domain. We have implemented the benchmarks for this algorithms on our dataset.
+		In TF-IDF model, we assign weight to each term in the model, and we choose the top'n' weighted words as the keywords for the text. The weight of each word is computed by taking into account the Term Frequency(TF) and Inverse Domain Frequency(IDF), where Term Frequency indicates how significant is the term to a specific document, and IDF takes into account how common the word is in the domain. We have implemented the benchmarks for this algorithms on our dataset.
+		
+		The other algorithm proposed by Lott.B was the one using Lexical Chain approach. In this approach, the extract features from the document, first by constructing a lexical tree of the nouns in the document. They extract the nouns and each noun word is a possible tag for the document. The lexical chain is constructed using semantic features of the words such as other synonym, hyperonyms and morphynyms of a noun. From the lexical tree, they extract four features, and three features from other positional aspects of the nouns. The features are used to train a C4.5 decision tree and this decision tree is used to make predictions of the nouns in the document from the test data. We have implemented this particular algorithm for our data set and analyzed the results.
 		
 		Other algorithms presently being used are some variant of TF-IDF with domain specific modifications. For example , one technique uses a Bayes classifier with TF-IDF to compute the weights and extract the keywords. 
-		There are techniques which are to be used when we dont have a corpus of text available to us. Frequency based single Document Keyword Extraction is one such technique. This techniques coputes word weights by measuring the frequency of text occurence within two punctuation marks in the text. Since we have text corpus available, we did not want to be compared against these classes of algorithms.
-		\subsection{Deep Learning Intution}
+		There are techniques which are to be used when we don't have a corpus of text available to us. Frequency based single Document Keyword Extraction is one such technique. This techniques computes word weights by measuring the frequency of text occurrence within two punctuation marks in the text. Since we have text corpus available, we did not want to be compared against these classes of algorithms.
+		\subsection{Deep Learning Intuition}
 	\section{Model Description}
 \subsection{Neural language model}
-In traditional NLP model, the input of the classifer is just one-hot features or TF-IDF features of text. However, this model suffers from the curse of dimensionality. When the number of documents in the corpus becomes large, the matrix of features will become sparse. Therefore, Bengio et al.\cite{Bengio2003NLP} proposed a new neural language model which generates distributed representations for each word in the corpus. That means each word in the documents has a fixed length of feature vector. With the feature vectors of each term, we can measure the similarity between different words or generate the vector representation of each document.
+In traditional NLP model, the input of the classifier is just one-hot features or TF-IDF features of text. However, this model suffers from the curse of dimensionality. When the number of documents in the corpus becomes large, the matrix of features will become sparse. Therefore, Bengio et al.\cite{Bengio2003NLP} proposed a new neural language model which generates distributed representations for each word in the corpus. That means each word in the documents has a fixed length of feature vector. With the feature vectors of each term, we can measure the similarity between different words or generate the vector representation of each document.
 
 In our model, each word will be first transformed to word vector by the tool named word2vec\cite{mikolov2013efficient}. The tool will first train the neural language model on our data set and then generate the word vector of each term.
 
@@ -121,18 +123,29 @@ After combining the two process, we can compute the reconstruction error and cro
  \end{split}
 \end{equation}
 	\section{Experiment and Results}
-    \begin{table}[h]
-        \begin{tabular}{|l|l|l|}
-            \hline
-            Model               & Precision & Recall \\ \hline
-            tf-idf              &           &        \\ \hline
-            Bayesian Classifier &           &        \\ \hline
-            Lexical Chain       &           &        \\ \hline
-            RNN                 &           &        \\ \hline
-            RNN-Word2Vec        &           &        \\ \hline
-        \end{tabular}
-    \end{table}
+%    \begin{table}[h]
+%        \begin{tabular}{|l|l|l|}
+%            \hline
+%            Model               & Precision & Recall \\ \hline
+%            tf-idf              &           &        \\ \hline
+%            Bayesian Classifier &           &        \\ \hline
+%            Lexical Chain       &           &        \\ \hline
+%            RNN                 &           &        \\ \hline
+%            RNN-Word2Vec        &           &        \\ \hline
+%        \end{tabular}
+%    \end{table}
+		\begin{figure}
+			\centering
+			\caption{Precision Comparison}
+			\includegraphics[scale=0.3]{../baseline/precision.jpg}
+		\end{figure}
+		\begin{figure}
+			\centering
+			\caption{Precision Comparison}
+			\includegraphics[scale=0.3]{../baseline/recall.jpg}
+		\end{figure}
 		\subsection{Baseline Algorithm Results}
+		
 		
 		To evaluate the performance of our approach compared to existing techniques, we have used Precision and Recall rates as our benchmarking standards.
 		We have formally defined these parameters as 
@@ -143,25 +156,22 @@ After combining the two process, we can compute the reconstruction error and cro
 		
 		where A is the set of predicted tags and B is the set of actual tags.
 		
-		We have implemnted TF-IDF and Bayseian Classifier approach as described by the survey for Keyword Extraction on our data set. With plain vanilla TF-IDF, the average precision and recall rates were less than 10 \%. However, after preprocessing the data by using a stemmer, the accuracy is a modest 15-20\% on topics in our data set for as the best performer.
+		We have implemented TF-IDF and Bayesian Classifier approach as described by the survey for Keyword Extraction on our data set. With plain vanilla TF-IDF, the average precision and recall rates were less than 10 \%. However, after preprocessing the data by using a stemmer, the accuracy is a modest 15-20\% on topics in our data set for as the best performer.
 		We have used portland stemmer, available as part of open source NLTK(Natural Language Processing Toolkit) project.
-		The Bayesian Classifier is similar to TF-IDF apporach except that it takes into account the position of the word in text. The weight of each term is reduced as the log of the its position from the begining of the sentence.
+		The Bayesian Classifier is similar to TF-IDF approach except that it takes into account the position of the word in text. The weight of each term is reduced as the log of the its position from the beginning of the sentence.
 		
-		\includegraphics[width=0.5\textwidth]{../baseline/TfIdf.jpg}
-		\includegraphics[width=0.5\textwidth]{../baseline/BayesPrecisionClassifier.jpg}
 				
-		As part of survey paper[6], we found out that the existing standard for key word extraction uses Lexical Tree approach and we are coming up with the precision and recall rates for Lexical Trees approach \\\{Report exact figures here\}.
+		As part of survey paper\{cite\}, we found out that the existing standard for key word extraction uses Lexical Tree approach and hence we have summarized its performance on our data set as well. As per the lexical tree approach, the precision and recall were very poor, less than 1 \% when tested against our data set. The reason for this can be attributed to the fact that our documents are very small posts with about a paragraph in them. Siber and McCoy\cite{silber2002efficiently} had implemented this feature for larger documents such as conference papers , essays etc and they would have probably had a document with more than 25 nouns, contrary to this, we only had 4-8 nouns per document on an average, hence we could not build a bigger graph for our documents. 
 		
 		\subsection{Dataset}
 		
 		We had identified data from stackexchange( \url{https://archive.org/download/stackexchange/stackexchange_archive.torrent}) to be a suitable data set for our project. 
-		
+		`
 		Of the 20 GB, available to us, for the feasibility of the experiment, we are using only 95 MB of data, which we have cleaned and formatted for our applications, on about 5 topics for our evaluation. Although the data set seems to be small compared with original one, we felt this was enough for testing purposes. Later we will try to \textbf{increase the data set} when our model is finished.
         
         Here is an interesting question, why we choose several topic and not only one topic as small data set to test our model? In fact we did that, but found that it's not a good way to do testing of the task like keyword extraction. For a single topic, some words will occur frequently, for example, in the topic of \emph{apple}, the words like \emph{osx} and \emph{iphone} will occur frequently in most documents which according to \emph{tf-idf}, they are not important words. But in fact they are the tags for many documents in this topic. And if we train the model on only a single dataset, then if the model only predict the top frequently tags, it can still gain good performance. That's the reason we use several topics as dataset here.
         
-        The last step is to dived the data set into training dataset and testing dataset. I random sample 20\% as the testing dataset and the rest are the training dataset. The number of documents in each data set is: 37935 for testing data set and 152537 for training data set.
-        
+        The last step is to dived the data set into training dataset and testing dataset. We random sample 20\% as the testing dataset and the rest are the training dataset.
         \subsection{Our Model}
         Our work is based on the open source software \footnote{https://github.com/sancha/jrae}. For the midterm report, we use the tool to do some simple checking and we also modify some parts of the it to make use of the word vectors generated by \emph{word2vec}\footnote{https://code.google.com/p/word2vec/}, another tool developed by Google.
         
@@ -175,14 +185,12 @@ After combining the two process, we can compute the reconstruction error and cro
         
         Besides, our task is a little different with the classical classification task. For each document, we may give more than one tag, because it's common for a document having more than one tag. So when predicating, we generate the belief of each tag for each document and choose the top-n tags.
         
-        We have done the testing on these settings:\begin{inparaenum}[(i)]
+        We do the testing on these settings:\begin{inparaenum}[(i)]
             \item original model
             \item pre-training the parameters of word vectors.
-        \end{inparaenum}. We trained the model with 10 dimension word vector.
+            \item using SVR instead of softmax.
+        \end{inparaenum}.
         
-        From the graph above we see the difference between the two models are less and less with the increasing of the number of tag returned. It's because that the tag pool is only 200. In fact if we don't do filtering of the tags, our model achieves 3.9\% for precision and 8.7\% for recall, while the original model achieves only 1.4\% for precision and 3.1\% for recall, which means our model rank the right tags higher than the original one.
-        
-        We see the precision and recall rate is not so high. Some reason for it is because we only train on the top-200 high frequent tags. And the ratio of them in the testing data is 49595/85108. It means that we can only achieve the recall rate with 58\% at most.
 	\section{Pending Work}
     \begin{figure}
         \includegraphics[scale=0.6]{DataFlow.png}
@@ -196,8 +204,6 @@ After combining the two process, we can compute the reconstruction error and cro
     And for the final model:\textbf{TODO}
     
     What's more we will also try to increase the size of the word vectors and the number of training data to observe the performance of our model.
-    
-    Besides, we have to admit if not filtering the tags not in the target documents, the result is worse since here in our dataset, for most tags they appear in the documents. Now we just use a simple to use this information, later we will try to train our model with this information.
 	\bibliography{bib/dp}
 	\bibliographystyle{plain}
 
