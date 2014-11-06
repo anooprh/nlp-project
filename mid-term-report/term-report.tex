@@ -1,4 +1,4 @@
-\documentclass[dvips,12pt]{article}
+\documentclass[dvips,9pt]{article}
 \usepackage[left=0.65in,top=0.3in,right=0.65in,bottom=0.3in]{geometry} % Document margins
 \usepackage{paralist}
 % Any percent sign marks a comment to the end of the line
@@ -151,11 +151,13 @@ After combining the two process, we can compute the reconstruction error and cro
 		
 		To evaluate the performance of our approach compared to existing techniques, we have used Precision and Recall rates as our benchmarking standards.
 		We have formally defined these parameters as 
-		
-		$Precision = \frac{ sizeof(A \bigcap B)}{sizeof(A)}$
-		
-		$Recall    = \frac{ sizeof(A \bigcap B)}{sizeof(A)}$
-		
+		\begin{equation}
+        \begin{aligned}
+		Precision &= \frac{ sizeof(A \bigcap B)}{sizeof(A)} \\		
+        Recall    &= \frac{ sizeof(A \bigcap B)}{sizeof(A)} \\
+        \end{aligned}
+        \end{equation}
+            		
 		where A is the set of predicted tags and B is the set of actual tags.
 		
 		We have implemented TF-IDF and Bayesian Classifier approach as described by the survey for Keyword Extraction on our data set. With plain vanilla TF-IDF, the average precision and recall rates were less than 10 \%. However, after preprocessing the data by using a stemmer, the accuracy is a modest 15-20\% on topics in our data set for as the best performer.

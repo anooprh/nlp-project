@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  5 NOV 2014 19:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  5 NOV 2014 20:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -8,8 +8,8 @@ LaTeX2e <2014/05/01>
 Babel <3.9k> and hyphenation patterns for 78 languages loaded.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -152,6 +152,10 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
+
+LaTeX Warning: Unused global option(s):
+    [9pt].
+
 (./term-report.aux)
 \openout1 = `term-report.aux'.
 
@@ -186,12 +190,12 @@ LaTeX Font Info:    ... okay on input line 23.
 * \topmargin=-36.135pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=12.0pt
+* \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=44.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -261,107 +265,106 @@ e
 [1
 Non-PDF special ignored!
 
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] <fi
-gure/autoencoder.png, id=13, 483.8075pt x 371.3875pt>
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <figure
+/autoencoder.png, id=10, 483.8075pt x 371.3875pt>
 File: figure/autoencoder.png Graphic file (type png)
 
 <use figure/autoencoder.png>
 Package pdftex.def Info: figure/autoencoder.png used on input line 70.
 (pdftex.def)             Requested size: 375.80542pt x 288.49103pt.
 
-<figure/recursiveautoencoder.png, id=15, 778.91pt x 387.4475pt>
+<figure/recursiveautoencoder.png, id=12, 778.91pt x 387.4475pt>
 File: figure/recursiveautoencoder.png Graphic file (type png)
 
 <use figure/recursiveautoencoder.png>
 Package pdftex.def Info: figure/recursiveautoencoder.png used on input line 78.
 
 (pdftex.def)             Requested size: 469.75499pt x 233.6645pt.
- [3 <./figure/autoencoder.png>]
-<figure/semiautoencoder.png, id=20, 921.4425pt x 411.5375pt>
+
+<figure/semiautoencoder.png, id=13, 921.4425pt x 411.5375pt>
 File: figure/semiautoencoder.png Graphic file (type png)
 
 <use figure/semiautoencoder.png>
 Package pdftex.def Info: figure/semiautoencoder.png used on input line 94.
 (pdftex.def)             Requested size: 469.75499pt x 209.79971pt.
- [4 <./figure/recursiveautoencoder.png>]
-Missing character: There is no Î in font cmr12!
-Missing character: There is no ¸ in font cmr12!
-Missing character: There is no Î in font cmr12!
-Missing character: There is no ¸ in font cmr12!
-
-<../baseline/precision.jpg, id=29, 1371.1225pt x 695.59875pt>
+ [2]
+Missing character: There is no Î in font cmr10!
+Missing character: There is no ¸ in font cmr10!
+Missing character: There is no Î in font cmr10!
+Missing character: There is no ¸ in font cmr10!
+ [3 <./figure/autoencoder.png>]
+<../baseline/precision.jpg, id=27, 1371.1225pt x 695.59875pt>
 File: ../baseline/precision.jpg Graphic file (type jpg)
 
 <use ../baseline/precision.jpg>
 Package pdftex.def Info: ../baseline/precision.jpg used on input line 140.
 (pdftex.def)             Requested size: 411.33992pt x 208.68123pt.
 
-<../baseline/recall.jpg, id=30, 1371.1225pt x 695.59875pt>
+<../baseline/recall.jpg, id=28, 1371.1225pt x 695.59875pt>
 File: ../baseline/recall.jpg Graphic file (type jpg)
 
 <use ../baseline/recall.jpg>
 Package pdftex.def Info: ../baseline/recall.jpg used on input line 146.
 (pdftex.def)             Requested size: 411.33992pt x 208.68123pt.
- [5 <./figure/semiautoencoder.png>] [6 <../baseline/precision.jpg> <../baseline
-/recall.jpg>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 166.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 168.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 166.
-
-Overfull \hbox (17.447pt too wide) in paragraph at lines 170--173
-\OT1/cmr/m/n/12 We had iden-ti-fied data from stack-ex-change( $\OT1/cmtt/m/n/1
-2 https : / / archive . org / download / stackexchange /
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 168.
+ [4 <./figure/recursiveautoencoder.png>]
+Overfull \hbox (18.18718pt too wide) in paragraph at lines 172--175
+\OT1/cmr/m/n/10 We had iden-ti-fied data from stack-ex-change( $\OT1/cmtt/m/n/1
+0 https : / / archive . org / download / stackexchange / stackexchange _
  []
 
-[7] <dist.pdf, id=45, 794.97pt x 614.295pt>
+[5 <./figure/semiautoencoder.png>] [6 <../baseline/precision.jpg> <../baseline/
+recall.jpg>] <dist.pdf, id=42, 794.97pt x 614.295pt>
 File: dist.pdf Graphic file (type pdf)
  <use dist.pdf>
-Package pdftex.def Info: dist.pdf used on input line 181.
+Package pdftex.def Info: dist.pdf used on input line 183.
 (pdftex.def)             Requested size: 397.48402pt x 307.14674pt.
- [8 <./dist.pdf>]
-<DataFlow.png, id=60, 817.0525pt x 601.24625pt>
+ [7 <./dist.pdf>] <DataFlow.png, id=58, 817.0525pt x 601.24625pt>
 File: DataFlow.png Graphic file (type png)
  <use DataFlow.png>
-Package pdftex.def Info: DataFlow.png used on input line 200.
+Package pdftex.def Info: DataFlow.png used on input line 202.
 (pdftex.def)             Requested size: 490.23529pt x 360.75052pt.
 
-Overfull \hbox (20.4803pt too wide) in paragraph at lines 200--201
+Overfull \hbox (20.4803pt too wide) in paragraph at lines 202--203
 [][] 
  []
 
-(./term-report.bbl [9] [10 <./DataFlow.png>]) [11] (./term-report.aux) ) 
+(./term-report.bbl [8 <./DataFlow.png>]) [9] (./term-report.aux) ) 
 Here is how much of TeX's memory you used:
- 2847 strings out of 493117
- 39501 string characters out of 6135433
- 109445 words of memory out of 5000000
- 6267 multiletter control sequences out of 15000+600000
- 10676 words of font info for 39 fonts, out of 8000000 for 9000
+ 2845 strings out of 493117
+ 39441 string characters out of 6135433
+ 110420 words of memory out of 5000000
+ 6264 multiletter control sequences out of 15000+600000
+ 9537 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,16n,23p,861b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/l
-ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/lo
-cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/
-local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/l
-ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
-/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
-014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-14/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on term-report.pdf (11 pages, 658145 bytes).
+</usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
+014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/201
+4/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2014/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on term-report.pdf (9 pages, 680551 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 114 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
