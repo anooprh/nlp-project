@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.9.15)  5 NOV 2014 19:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Arch Linux) (format=pdflatex 2014.9.15)  5 NOV 2014 19:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -256,14 +256,7 @@ G,.JBIG2,.JB2,.eps]
 (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
-))
-
-LaTeX Warning: Citation `hinton2012deep' on page 1 undefined on input line 43.
-
-
-LaTeX Warning: Citation `lott2012survey' on page 1 undefined on input line 50.
-
-[1
+)) [1
 Non-PDF special ignored!
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
@@ -318,11 +311,6 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 164.
 
-
-LaTeX Warning: Citation `silber2002efficiently' on page 7 undefined on input li
-ne 164.
-
-
 Overfull \hbox (17.447pt too wide) in paragraph at lines 168--171
 \OT1/cmr/m/n/12 We had iden-ti-fied data from stack-ex-change( $\OT1/cmtt/m/n/1
 2 https : / / archive . org / download / stackexchange /
@@ -344,32 +332,29 @@ Overfull \hbox (20.4803pt too wide) in paragraph at lines 196--197
 [][] 
  []
 
-(./term-report.bbl [9 <./DataFlow.png>]) [10] (./term-report.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+(./term-report.bbl [9 <./DataFlow.png>]) [10] (./term-report.aux) ) 
 Here is how much of TeX's memory you used:
  2845 strings out of 493308
  38530 string characters out of 6143616
- 108924 words of memory out of 5000000
+ 108933 words of memory out of 5000000
  6261 multiletter control sequences out of 15000+600000
  10676 words of font info for 39 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,16n,23p,876b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on term-report.pdf (10 pages, 655627 bytes).
+</usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf
+b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmtt12.pfb>
+Output written on term-report.pdf (10 pages, 657009 bytes).
 PDF statistics:
  113 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream

@@ -5,10 +5,29 @@ Yoshua Bengio, R{\'e}jean Ducharme, Pascal Vincent, and Christian Janvin.
 \newblock A neural probabilistic language model.
 \newblock {\em J. Mach. Learn. Res.}, 3:1137--1155, March 2003.
 
+\bibitem{hinton2012deep}
+Geoffrey Hinton, Li~Deng, Dong Yu, George~E Dahl, Abdel-rahman Mohamed, Navdeep
+  Jaitly, Andrew Senior, Vincent Vanhoucke, Patrick Nguyen, Tara~N Sainath,
+  et~al.
+\newblock Deep neural networks for acoustic modeling in speech recognition: The
+  shared views of four research groups.
+\newblock {\em Signal Processing Magazine, IEEE}, 29(6):82--97, 2012.
+
+\bibitem{lott2012survey}
+Brian Lott.
+\newblock Survey of keyword extraction techniques.
+\newblock {\em UNM Education}, 2012.
+
 \bibitem{mikolov2013efficient}
 Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
 \newblock Efficient estimation of word representations in vector space.
 \newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{silber2002efficiently}
+H~Gregory Silber and Kathleen~F McCoy.
+\newblock Efficiently computed lexical chains as an intermediate representation
+  for automatic text summarization.
+\newblock {\em Computational Linguistics}, 28(4):487--496, 2002.
 
 \bibitem{socher2011semi}
 Richard Socher, Jeffrey Pennington, Eric~H Huang, Andrew~Y Ng, and
