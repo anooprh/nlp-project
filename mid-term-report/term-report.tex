@@ -173,7 +173,7 @@ After combining the two process, we can compute the reconstruction error and cro
 		
 		\subsection{Dataset}
 		
-		We had identified data from stackexchange( \url{https://archive.org/download/stackexchange/stackexchange_archive.torrent}) to be a suitable data set for our project. 
+		We had identified data from stackexchange \footnote{\url{https://archive.org/download/stackexchange/stackexchange_archive.torrent}} to be a suitable data set for our project. 
 		
 		Of the 20 GB, available to us, for the feasibility of the experiment, we are using only 95 MB of data, which we have cleaned and formatted for our applications, on about 5 topics for our evaluation. Although the data set seems to be small compared with original one, we felt this was enough for testing purposes. Later we will try to \textbf{increase the data set} when our model is finished.
         
@@ -207,15 +207,19 @@ After combining the two process, we can compute the reconstruction error and cro
         \caption{Our frame for keyword extraction. Here we have done some work on the yellow part: Recursive Autoencoder.}
         \label{frame}
     \end{figure}
-    Now we have studied and implemented some baseline algorithms. We also studied the recursive autoencoder algorithm mentioned in the proposal. What's more we have done some experiment based on recursive autoencoder and also integrate \emph{word2vect} with recursive autoencoder.
+    Now we have studied and implemented some baseline algorithms. We also studied the recursive autoencoder algorithm mentioned in the proposal. What's more we have done some experiments based on recursive autoencoder and also integrate \emph{word2vect} with recursive autoencoder.
     
     In Figure \ref{frame} is our big frame for the task. For the final report, we will add parse tree into the recursive autoencoder instead of using the greedy algorithm.
     
-    And for the final model:\textbf{TODO}
+    What's more we will also try to increase the size of the word vectors and the number of training data to observe the performance of our model. Besides, we have to admit if not filtering the keywords, which are not in the target documents, the result is worse since here in our dataset, for most keywords they appear in the documents. Now we just use a simple to use this information, later we will try to train our model with this information.
     
-    What's more we will also try to increase the size of the word vectors and the number of training data to observe the performance of our model.
-    
-    Besides, we have to admit if not filtering the keywords, which are not in the target documents, the result is worse since here in our dataset, for most keywords they appear in the documents. Now we just use a simple to use this information, later we will try to train our model with this information.
+    So in summary for the final report, we need to finish the following several things:
+    \begin{enumerate}
+        \item Add parse tree to current model and test it.
+        \item Using SVR or hierarchical model instead of softmax in the classification part (the red part in the frame).
+        \item Increase the dimension of word vectors and training dataset size and do testing.
+        \item To overcome the limit of supervised learning, the co-occurrence of the keywords will be used to improve the recall and precision as a stretch goal.
+    \end{enumerate}
 	\bibliography{bib/dp}
 	\bibliographystyle{plain}
 
