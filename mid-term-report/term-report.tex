@@ -191,8 +191,8 @@ After combining the two process, we can compute the reconstruction error and cro
         
         We do the testing on these settings:\begin{inparaenum}[(i)]
             \item original model
-            \item pre-training the parameters of word vectors.
-        \end{inparaenum}. We trained the model with 10 dimension word vector.
+            \item pre-training the parameters of word vectors
+        \end{inparaenum}. We will cover the part of using parse tree in in the final report. We trained the model with 10 dimension word vector.
         
         From the Figure \ref{precision} and \ref{recall} above we see the difference between the two models are less and less with the increasing of the number of tag returned. It's because that the tag pool is only 200. In fact if we don't do filtering of the tags, our model achieves 3.9\% for precision and 8.7\% for recall, while the original model achieves only 1.4\% for precision and 3.1\% for recall, which means our model rank the right tags higher than the original one.
         
@@ -203,7 +203,7 @@ After combining the two process, we can compute the reconstruction error and cro
         \caption{Our frame for keyword extraction. Here we have done some work on the yellow part: Recursive Autoencoder.}
         \label{frame}
     \end{figure}
-    Now we have studied and implemented some baseline algorithms. We also the recursive autoencoder algorithm mentioned in the proposal. What's more we have done some experiment based on recursive autoencoder and also integrate \emph{word2vect} with recursive autoencoder.
+    Now we have studied and implemented some baseline algorithms. We also studied the recursive autoencoder algorithm mentioned in the proposal. What's more we have done some experiment based on recursive autoencoder and also integrate \emph{word2vect} with recursive autoencoder.
     
     In Figure \ref{frame} is our big frame for the task. For the final report, we will add parse tree into the recursive autoencoder instead of using the greedy algorithm.
     
