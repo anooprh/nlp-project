@@ -29,6 +29,19 @@ H~Gregory Silber and Kathleen~F McCoy.
   for automatic text summarization.
 \newblock {\em Computational Linguistics}, 28(4):487--496, 2002.
 
+\bibitem{socher2012deep}
+Richard Socher, Yoshua Bengio, and Christopher~D Manning.
+\newblock Deep learning for nlp (without magic).
+\newblock In {\em Tutorial Abstracts of ACL 2012}, page 5–5. Association for
+  Computational Linguistics, 2012.
+
+\bibitem{socher2011parsing}
+Richard Socher, Cliff~C Lin, Chris Manning, and Andrew~Y Ng.
+\newblock Parsing natural scenes and natural language with recursive neural
+  networks.
+\newblock In {\em Proceedings of the 28th International Conference on Machine
+  Learning (ICML-11)}, pages 129--136, 2011.
+
 \bibitem{socher2011semi}
 Richard Socher, Jeffrey Pennington, Eric~H Huang, Andrew~Y Ng, and
   Christopher~D Manning.

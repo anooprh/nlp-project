@@ -17,9 +17,9 @@
 
 \setlength{\oddsidemargin}{0.25in}
 \setlength{\textwidth}{6.5in}
-\setlength{\topmargin}{-0.5in}
+\setlength{\topmargin}{-0.1in}
 \setlength{\textheight}{8.5in}
-\usepackage[left=0.8in,top=0.65in,right=0.8in,bottom=0.65in]{geometry} % Document margins
+\usepackage[left=0.7in,top=1.0in,right=0.7in,bottom=1.0in]{geometry} % Document margins
 
 % These force using more of the margins that is the default style
 
@@ -58,9 +58,9 @@
 
 		There are techniques which are to be used when we don't have a corpus of text available to us. Frequency based single Document Keyword Extraction is one such technique. This techniques computes word weights by measuring the frequency of text occurrence within two punctuation marks in the text. Since we have text corpus available, we did not want our algorithm to be compared against these classes of algorithms.
 		\subsection{Deep Learning Intuition}
-		All the machine learning algorithms we talked about in the last section are all shallow-strutured achitectures. However, these algorithms with simple models and limited represention power cannot achieve impressing results in dealing with complicated tasks like NLP. In order to extract more complex features and better represent human language, multiple layers models or deep structure models are designed to handle more  complicated human language problems.
+		All the machine learning algorithms we talked about in the last section are all shallow-strutured achitectures. However, these algorithms with simple models and limited represention power cannot achieve impressing results in dealing with complicated tasks like NLP. In order to extract more complex features and better represent human language, multiple layers models or deep structure models are designed to handle more  complicated human language problems\cite{socher2012deep}.
 
-The purpose of deep learning is to extract more features from human languages through adopting neural networks with deep structure. So the idea of deep learning originates from artificial neural network(ANN). But unlike ANN, the algorithm of deep learning can not only adopt deep struture but also achieve better optimization results. We will introduce one of the deep structures in the following parts and compare its experimental results with the results of some shallow structures	.
+The purpose of deep learning is to extract more features from human languages through adopting neural networks with deep structure. So the idea of deep learning originates from artificial neural network(ANN). But unlike ANN, the algorithm of deep learning can not only adopt deep struture but also achieve better optimization results. We will introduce one of the deep structures in the following parts and compare its experimental results with the results of some shallow structures.
 	\section{Model Description}
 In this part, the neural language model, which is the key part of NLP, will be first introduced. Then the deep learning structure named recursive  autoincoder will be discussed in the second part. Finally, we will explain the detail of our model.
 \subsection{Neural language model}
@@ -73,15 +73,15 @@ Autoencoder is a neural network model that learns the function $f(x)=x$ in order
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width = 0.8\linewidth]{figure/autoencoder}
+\includegraphics[width = 0.6\linewidth]{figure/autoencoder}
 \caption{Autoencoder}
 \label{fig:ae}
 \end{figure}
 
-However, only using the structure of autoencoder may not effectively model the text. If we set the input of autoencoder as the vectors of all terms in one document and try to generate the condensed features of the document, there will be so many parameters to optimize and the structure of the text is not utilized. In order to solve the problem, the structure of recursive autoencoder was proposed to model the hierarchical structure. Figure 2 shows the structure of recursive autoencoder.
+However, only using the structure of autoencoder may not effectively model the text. If we set the input of autoencoder as the vectors of all terms in one document and try to generate the condensed features of the document, there will be so many parameters to optimize and the structure of the text is not utilized. Besides, Accorrding to Socher et al.\cite{socher2011parsing}, the structure of human language is recursive. In order to solve the problem and better represent the human language, the structure of recursive autoencoder was proposed to model the hierarchical structure. Figure 2 shows the structure of recursive autoencoder.
 \begin{figure}[ht]
 \centering
-\includegraphics[width = 1.0\linewidth]{figure/recursiveautoencoder}
+\includegraphics[width = 0.7\linewidth]{figure/recursiveautoencoder}
 \caption{Recursive Autoencoder}
 \label{fig:rae}
 \end{figure}
@@ -97,7 +97,7 @@ In the traditional recursive autoencoder model, the network is trained only by t
 One of the semi-superivised recursive autoencoder model has been proposed by socher et al.\cite{socher2011semi} in order to handle the issue of sentiment analysis. The structure of recursive autoencoder is presented as follows:
 \begin{figure}[ht]
 \centering
-\includegraphics[width = 1.0\linewidth]{figure/semiautoencoder}
+\includegraphics[width = 0.7\linewidth]{figure/semiautoencoder}
 \caption{Semi-supervised Autoencoder}
 \label{fig:sae}
 \end{figure}	
