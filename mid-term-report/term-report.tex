@@ -1,5 +1,4 @@
 \documentclass[dvips,9pt]{article}
-\usepackage[left=0.65in,top=0.3in,right=0.65in,bottom=0.3in]{geometry} % Document margins
 \usepackage{indentfirst}
 \usepackage{paralist}
 % Any percent sign marks a comment to the end of the line
@@ -11,6 +10,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{url}
 \usepackage{amsmath}
+
 % These are additional packages for "pdflatex", graphics, and to include
 % hyperlinks inside a document.
 
@@ -18,6 +18,7 @@
 \setlength{\textwidth}{6.5in}
 \setlength{\topmargin}{-0.5in}
 \setlength{\textheight}{8.5in}
+\usepackage[left=0.8in,top=0.65in,right=0.8in,bottom=0.65in]{geometry} % Document margins
 
 % These force using more of the margins that is the default style
 
@@ -52,12 +53,15 @@
 		
 		In TF-IDF model, we assign weight to each term in the model, and we choose the top'n' weighted words as the keywords for the text. The weight of each word is computed by taking into account the Term Frequency(TF) and Inverse Domain Frequency(IDF), where Term Frequency indicates how significant is the term to a specific document, and IDF takes into account how common the word is in the domain. 	Other algorithms presently being used are some variant of TF-IDF with domain specific modifications. For example , one technique uses a Bayes classifier with TF-IDF to compute the weights and extract the keywords. It is similar to TF-IDF that takes, but it also takes into account the depth of the word in the document. The intuition is that keywords are present towards the beginning of the document , rather than the towards the end. So we use a third term, called the depth term, in addition to TF and IDF terms. We have implemented the benchmarks for these algorithms on our dataset.
 		
-		The other algorithm proposed by Lott.B\cite{lott2012survey} was the one using Lexical Chain approach. In this approach, we extract features from the document, first by constructing a lexical tree of the nouns in the document. They extract the nouns and each noun word is a possible keyword of the document. The lexical chain is constructed using semantic features of the words such as other synonym, hyperonyms and morphynyms of a noun. From the lexical tree, they extract four features, and three features from other positional aspects of the nouns. The features are used to train a C4.5 decision tree and this decision tree is used to make predictions of the nouns in the document from the test data. We have implemented this particular algorithm for our data set and analyzed the results.
-		
+		The other algorithm proposed by Lott.B\cite{lott2012survey} was the one using Lexical Chain approach. In this approach, the extract features from the document, first by constructing a lexical tree of the nouns in the document. They extract the nouns and each noun word is a possible keyword for the document. The lexical chain is constructed using semantic features of the words such as other synonym, hyperonyms and morphynyms of a noun. From the lexical tree, they extract seven features concerning positions and scores of the nouns. The features are used to train a C4.5 decision tree and this decision tree is used to make predictions of the nouns in the document from the test data. We have implemented this particular algorithm for our data set and analyzed the results.		
 
 		There are techniques which are to be used when we don't have a corpus of text available to us. Frequency based single Document Keyword Extraction is one such technique. This techniques computes word weights by measuring the frequency of text occurrence within two punctuation marks in the text. Since we have text corpus available, we did not want our algorithm to be compared against these classes of algorithms.
 		\subsection{Deep Learning Intuition}
+		All the machine learning algorithms we talked about in the last section are all shallow-strutured achitectures. However, these algorithms with simple models and limited represention power cannot achieve impressing results in dealing with complicated tasks like NLP. In order to extract more complex features and better represent human language, multiple layers models or deep structure models are designed to handle more  complicated human language problems.
+
+The purpose of deep learning is to extract more features from human languages through adopting neural networks with deep structure. So the idea of deep learning originates from artificial neural network(ANN). But unlike ANN, the algorithm of deep learning can not only adopt deep struture but also achieve better optimization results. We will introduce one of the deep structures in the following parts and compare its experimental results with the results of some shallow structures	.
 	\section{Model Description}
+In this part, the neural language model, which is the key part of NLP, will be first introduced. Then the deep learning structure named recursive  autoincoder will be discussed in the second part. Finally, we will explain the detail of our model.
 \subsection{Neural language model}
 In traditional NLP model, the input of the classifier is just one-hot features or TF-IDF features of text. However, this model suffers from the curse of dimensionality. When the number of documents in the corpus becomes large, the matrix of features will become sparse. Therefore, Bengio et al.\cite{Bengio2003NLP} proposed a new neural language model which generates distributed representations for each word in the corpus. That means each word in the documents has a fixed length of feature vector. With the feature vectors of each term, we can measure the similarity between different words or generate the vector representation of each document.
 
@@ -123,18 +127,13 @@ After combining the two process, we can compute the reconstruction error and cro
 \\
  \end{split}
 \end{equation}
+
+
+
+\subsection{The structure of our model}
+In our model, the semi-supervised structure is applied to handle the issue of keyword extraction. However, the input the autoencoder is changed to the vector of words generated by word2vec instead of randomly parameters. In addition, the label of semi-supervised model is set as all possible keywords in our corpus. Therefore, the softmax function will generate the probability of each possible keyword. Just as mentioned in the previous part, the optimization objective is to minimize the summation of reconstruction error and the cross-entropy error. Finally, we also want to replace the tree stucture which is generated by the greedy algorithm with a grammar tree. Since the grammar tree contains the semantic structure of the text, the vector of the whole documents generated by such structrue may be more reasonable.
+
 	\section{Experiment and Results}
-%    \begin{table}[h]
-%        \begin{tabular}{|l|l|l|}
-%            \hline
-%            Model               & Precision & Recall \\ \hline
-%            tf-idf              &           &        \\ \hline
-%            Bayesian Classifier &           &        \\ \hline
-%            Lexical Chain       &           &        \\ \hline
-%            RNN                 &           &        \\ \hline
-%            RNN-Word2Vec        &           &        \\ \hline
-%        \end{tabular}
-%    \end{table}
 		\begin{figure}
 			\centering
 			\caption{Precision Comparison}
@@ -203,7 +202,8 @@ After combining the two process, we can compute the reconstruction error and cro
         We see the precision and recall rate is not so high. Some reason for it is because we only train on the top-200 high frequent keywords. And the ratio of them in the testing data is 49595/85108. It means that we can only achieve the recall rate with 58\% at most.
 	\section{Pending Work}
     \begin{figure}
-        \includegraphics[scale=0.6]{DataFlow.png}
+        \centering
+        \includegraphics[scale=0.5]{DataFlow.png}
         \caption{Our frame for keyword extraction. Here we have done some work on the yellow part: Recursive Autoencoder.}
         \label{frame}
     \end{figure}
