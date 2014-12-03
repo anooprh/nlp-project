@@ -21,13 +21,17 @@ if(len(sys.argv) != 3):
     print "Correct usage : python evaluate_metric.py predictions_file actuals_file"
     print "Example :  python evaluate_metric.py test_data_labels.csv test_data_labels.csv"
     sys.exit(1)
-test_file_name = sys.argv[1]
-pred_file_name = sys.argv[2]
+test_file_name = sys.argv[2]
+pred_file_name = sys.argv[1]
     #test_file_name = "test_data_labels.csv"
     #pred_file_name = "predicted_labels.csv"
 
 precision = [];
 recall = [];
+
+precision_count = 0
+recall_count = 0
+intersection_count = 0
 
 def size_of_common_elements(list1, list2):
     return len(set(list1).intersection(list2))
@@ -47,10 +51,13 @@ for pred_line, test_line in izip(open(pred_file_name), open(test_file_name)):
     size_test_label = len(test_labels)
     size_intersection = size_of_common_elements(pred_labels, test_labels)
 
-    precision.append(size_intersection*1.0 / size_pred_label*1.0 )
-    recall.append(size_intersection*1.0 / size_test_label*1.0 )
+    intersection_count+=size_intersection
+    precision_count+= size_pred_label
+    recall_count+= size_test_label
+    # precision.append(size_intersection*1.0 / size_pred_label*1.0 )
+    # recall.append(size_intersection*1.0 / size_test_label*1.0 )
     
-average_precision = average(precision)
-average_recall = average(recall)
-print "Average precision : " + str(average_precision * 100) + " %"
-print "Average recall    : " + str(average_recall * 100) + " %"
+# average_precision = average(precision)
+# average_recall = average(recall)
+print "Average precision : " + str(intersection_count*1.0/precision_count * 100) + " %"
+print "Average recall    : " + str(intersection_count*1.0/recall_count * 100) + " %"

@@ -28,8 +28,9 @@ temp_dir = "extracted"
 questions_out_file_name = "questions_cleaned"
 questions_with_id_out_file_name = questions_out_file_name +"_with_id"
 tag_file_name = "question_labels"
+new_file_name = "required_file"
 
-opts, args = getopt(sys.argv[1:], 'i:o:w:t:')
+opts, args = getopt(sys.argv[1:], 'i:o:w:t:n')
 for opt , arg in opts:
     if opt in ('-i'):
         input_filename = arg
@@ -39,6 +40,9 @@ for opt , arg in opts:
         questions_with_id_out_file_name = arg
     if opt in ('-t'):
         tag_file_name = arg
+    if opt in ('-n'):
+        new_file_name = arg
+
 
 if input_filename is None:
     print "Input file not specified"
@@ -53,16 +57,20 @@ subprocess.call(['7z', 'e', input_filename,'-o'+my_path+'/'+temp_dir])
 
 tag_file = open(tag_file_name, "w")
 questions_only_file = open(questions_out_file_name, 'w')
+print questions_out_file_name
 questions_with_id_file = open(questions_with_id_out_file_name, 'w')
+print new_file_name
+new_file = open(questions_out_file_name+'modified','w')
 
 stopset = set(stopwords.words('english'))
-snowball = stem.snowball.EnglishStemmer()
+# snowball = stem.snowball.EnglishStemmer()
 
 tree = ET.parse(temp_dir+'/Posts.xml')
 root = tree.getroot()
 posts = root.getchildren()
 count = 0
 for post in posts:
+    required_line = ''
     if post.get('PostTypeId') != '1':  # It is not a question
         continue
     count += 1
@@ -75,16 +83,16 @@ for post in posts:
     title = re.sub('<[^>]+>', '',title).strip()
 
     # Replace everythin in text with white space except -
-    for c in string.punctuation.replace('-',''):
+    for c in string.punctuation.replace('-','').replace('.',''):
         question_body = question_body.replace(c,'')
     words = word_tokenize(question_body)
     # Stemming and stop word removal
     words = [w for w in words if not w in stopset]
-    words = [(snowball.stem(w)).lower() for w in words]
+    # words = [(snowball.stem(w)).lower() for w in words]
 
     this_post_words = words
 
-    for c in string.punctuation.replace('-',''):
+    for c in string.punctuation.replace('-','').replace('.',''):
         title = title.replace(c,"")
     words = word_tokenize(question_body)
     # Stemming and stop word removal
@@ -97,9 +105,10 @@ for post in posts:
     questions_only_file_line = ''
     questions_id_file_line = doc_hash+': '
 
+    # required_line += doc_hash
     for word in this_post_words:
-        questions_only_file_line += snowball.stem(word).lower()+' '
-        questions_id_file_line += snowball.stem(word).lower()+' '
+        questions_only_file_line += word.lower()+' '
+        # questions_id_file_line += snowball.stem(word).lower()+' '
 
     tags = post.get('Tags')
     tags = tags.replace('><',',').replace('<','').replace('>','')
@@ -107,16 +116,19 @@ for post in posts:
 
     tag_file_line = doc_hash
     for tag in tags:
-        tag_file_line += ","+(snowball.stem(tag.decode('utf-8-sig'))).encode('utf-8').lower()
+        tag_file_line += ","+tag.lower()
 
     questions_only_file.write(questions_only_file_line.encode('utf-8')+'\n')
     questions_with_id_file.write(questions_id_file_line.encode('utf-8')+'\n')
     tag_file.write(tag_file_line+'\n')
+    required_line+=tag_file_line+'\t'+questions_only_file_line.encode('utf-8')+'\n'
+    new_file.write(required_line)
     # print count
 
 tag_file.close()
 questions_only_file.close()
 questions_with_id_file.close()
+new_file.close()
 # shutil.rmtree(temp_dir)
 print "Done . . "
 subprocess.call(['rm', '-rf', temp_dir])
